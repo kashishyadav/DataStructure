@@ -6,6 +6,25 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+
+/*  
+GetNthNode(Node head, N)
+len-n-1: position pr element hoga vahi evalueate kiya he
+        ptr1=head //First Pointer
+        ptr2=head //Second Pointer
+        count=0
+        //Increment ptr1 till it points to Nth node from the head
+        while ptr1 is not NULL and count<N    //to -n
+            ptr1=ptr1->next
+            count++
+
+            while ptr1->next is not NULL    //l-1
+                ptr1=ptr1->next
+                ptr2=ptr2->next
+
+        //ptr2 points to the Nth node from the tail
+        return ptr2's value */
+
 public class Solution {
 
     static class SinglyLinkedListNode {
