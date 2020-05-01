@@ -1,0 +1,200 @@
+import java.util.*;
+import java.io.*;
+
+class Node {
+    
+    int data;
+    Node next;
+    Node(int data) {
+        this.data = data;
+        next = null;
+      
+    }
+}
+
+class Solution {
+
+/* you only have to complete the function given below.  
+Node is defined as  
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+}
+
+*/
+     public static Node removeDuplicate(Node head)
+     {
+         if(head==null)
+          return null;
+         else if(head.next==null)
+         return head;
+         
+         HashSet<Integer> hs=new HashSet<>();
+         Node p=head;
+         Node q=null;
+         while(p!=null)
+         {
+             int value=p.data;
+             if(hs.contains(value))
+             {
+                 q.next=p.next;
+             }
+             else{
+                 hs.add(value);
+                 q=p;
+             }
+             p=p.next;
+         }
+         return head;
+     }
+     public static Node reverseLinked(Node head){
+         Node prev=null;
+         Node Next=head;
+         Node curr=head;
+         while(curr!=null)
+         {
+             Next=curr.next;
+             curr.next=prev;
+             prev=curr;
+             curr=Next;
+         }
+         return prev;
+         
+     }
+     public static Node addNumber(Node l1,Node l2)
+     {
+         l1=reverseLinked(l1);
+         l2=reverseLinked(l2);
+         
+         
+         int carry=0,sum=0;
+         Node ret=null;
+         Node res=null;
+         Node temp=null;
+         Node prev=null;
+         
+         while(l1!=null || l2 !=null)
+         {
+            // System.out.println((l1!=null)?l1.data:0)+" + "+((l2!=null)?l2.data:0));
+            int data1=(l1!=null)?l1.data:0;
+            int data2=(l2!=null)?l2.data:0;
+           // System.out.println("carry pehle: "+carry);
+             sum=carry+((l1!=null)?l1.data:0)+((l2!=null)?l2.data:0);
+             carry=sum>=10?1:0;
+             sum=sum%10;
+          //   System.out.println("sum "+sum+" carry "+carry+" d1: "+data1+" d2: "+data2);
+             temp=new Node(sum);
+             if(ret==null)
+             ret=temp;
+             else
+             {
+                 prev.next=temp;
+             }
+             prev=temp;
+             
+             if(l1!=null)
+             l1=l1.next;
+             
+             if(l2!=null)
+             l2=l2.next;
+         }
+         if(carry>0)
+         temp.next=new Node(carry);
+         
+         ret=reverseLinked(ret);
+         return ret;
+     }
+   public static Node swapNode(Node head,int x,int y)
+   {
+       //Node root=head;
+       Node temp=head;
+       Node prev=null;
+       
+       while(temp!=null && temp.data!=x)
+       {
+           prev=temp;
+           temp=temp.next;
+       }
+       Node prevX=prev;
+       Node nx=temp;
+       temp=head;
+              while(temp!=null && temp.data!=y)
+       {
+           prev=temp;
+           temp=temp.next;
+       }
+       Node prevY=prev;
+       Node ny=temp;
+       
+       //if one of the node is first node
+      Node temp1=ny.next;//temp variable to store the next adress
+      ny.next=nx.next;//pehli node ka next
+      nx.next=temp1;//or ab x agli node ko point krega
+      if(prevX==null)
+      {
+          head=ny;
+          prevY.next=nx;//x get pointed by the previous one
+      }
+        if(prevY==null)
+      {
+          head=nx;
+          prevX.next=ny;//x get pointed by the previous one
+      }
+      if(prevX!=null && prevY!=null)
+      {
+          prevX.next=ny;
+          prevY.next=nx;
+      }
+      
+      return head;
+       
+   }
+    public static void printLinkedList(Node root) {
+        if(root==null)
+         return;
+        while(root!=null)
+       {
+           System.out.print(root.data+" ");
+           root=root.next;
+    }
+       
+    }
+
+	public static Node insert(Node root, int data) {
+        if(root == null) {
+            System.out.println("base condition");
+            return new Node(data);
+        } else {
+            Node temp=root;
+            Node n=new Node(data);
+               while(temp.next!=null)
+               {
+                   temp=temp.next;
+               }
+               temp.next=n;
+            }
+            return root;
+        }
+    
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int t = scan.nextInt();
+        Node root = null;
+        Node root1=null;
+        while(t-- > 0) {
+       // System.out.println("insertion call-----------------------");
+            int data = scan.nextInt();
+            root = insert(root, data);
+        }
+       
+        scan.close();
+        root=swapNode(root,2,4);
+        //root=addNumber(root,root1);
+       // root=removeDuplicate(root);
+       printLinkedList(root);
+       
+    }	
+}
