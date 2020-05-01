@@ -91,7 +91,8 @@ public class Solution {
                 current=current.next;
             }
         }
-            return head;
+        SinglyLinkedList temp=head;
+            return temp;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
