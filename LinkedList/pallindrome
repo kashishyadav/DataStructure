@@ -1,0 +1,70 @@
+ // Function to check if linked list is palindrome
+    boolean isPalindrome(Node head) 
+    {
+      
+    //Your code here
+    Node temp=head;
+    Node q=head;
+    Node p=head;
+     if(p.next==null)
+    return true;
+    if(p.next.next==null)
+    {
+        if(p.data==p.next.data)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    while(true)
+    {
+          p=p.next.next;
+         if(p==null)
+          {
+              
+              temp=q.next;
+              q.next=null;
+              break;
+          }
+        if(p.next==null)
+          {
+              temp=q.next.next;
+              break;
+          }
+          
+         q=q.next;
+       
+    }
+    temp=reverse(temp);
+    while(temp!=null && head!=null)
+    {
+        if(temp.data!=head.data)
+        return false;
+        
+        temp=temp.next;
+        head=head.next;
+    }
+    return true;
+}
+
+
+ Node reverse(Node current)
+ {  Node prev=null;
+     Node curr=current;
+     Node Next=null;
+     if(current.next==null)
+     {
+         return current;
+     }
+     while(curr!=null)
+     {
+         Next=curr.next;
+         curr.next=prev;
+         prev=curr;
+         curr=Next;
+     }
+     return prev;
+     
+ }
