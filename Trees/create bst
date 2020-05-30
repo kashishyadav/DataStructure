@@ -1,0 +1,84 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package treeprogramming;
+
+/**
+ *
+ * @author KASHISH YADAV
+ */
+public class CreateBt {
+    static class Node{
+        Node left;
+        Node right;
+        int data;
+        Node(int data)
+        {
+            this.data=data;
+            right=left=null;
+        }
+    }
+    public static void main(String str[])
+    {
+        Node root=null;
+        root=addNode(root,10);
+        root=addNode(root,11);
+        root=addNode(root,9);
+       root=addNode(root,7);
+        root=addNode(root,8);
+        root=addNode(root,12);
+        System.out.println("---------inorder----------------\n");
+        printN(root);
+        System.out.print("-----------preorder---------------\n");
+        preOrder(root);
+        System.out.print("-----------postorder---------------\n");
+        postOrder(root);
+    }
+    public static Node addNode(Node root,int data)
+    {
+        if(root==null)
+        {
+            root=new Node(data);
+            return root;
+        }
+       else if(data<root.data)
+        {
+            root.left=addNode(root.left,data);
+        }
+       else{
+           root.right=addNode(root.right,data);
+       }
+        return root;
+    }
+    public static void printN(Node root)
+    {
+        if(root==null)
+            return;
+            
+        printN(root.left);
+        System.out.println(root.data);
+        printN(root.right);
+        
+    }
+     public static void postOrder(Node root)
+    {
+        if(root==null)
+            return;
+            
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.println(root.data);
+        
+    }
+      public static void preOrder(Node root)
+    {
+        if(root==null)
+            return;
+        System.out.println(root.data);   
+        preOrder(root.left);
+        preOrder(root.right);
+        
+    }
+}
