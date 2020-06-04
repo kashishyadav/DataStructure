@@ -1,0 +1,133 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package treeprogramming;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+/**
+ *
+ * @author SUDHANSHU YADAV
+ */
+public class btTOdllbfs {
+        static Node head=null;
+         static Node prev=null;
+      static class Node
+      {
+        int data;
+        Node left;
+        int d=0;
+        Node right;
+        Node(int data)
+        {
+            this.data=data;
+            left=right=null;
+            this.d=0;
+        }
+        public void setd_val(int d)
+        {
+            this.d=d;
+        }
+    }
+
+  
+    public static void main(String arg[])
+    { 
+      Scanner sc=new Scanner(System.in);
+        System.out.println("enter the number of tree: ");
+        int t=sc.nextInt();
+        Node root[]=new Node[t];
+        int h=t;
+        int j=0;
+        while(t>0)
+        {
+            System.out.println("enter the number of nodes: ");
+            int n=sc.nextInt();
+            for(int i=0;i<n;i++)
+            {
+                System.out.println("enter the nodes: ");
+                root[j]=addNode(root[j],sc.nextInt());
+            }
+            --t;
+            j++;
+            
+        }
+        for(int k=0;k<h;k++)
+        {
+           
+            System.out.println("dll:");
+
+            binaryTreeDllbfs(root[k]);
+        
+//        System.out.print("head: "+head.left.data);
+            traverse(head);
+            
+         }
+
+       }
+   
+     public static Node addNode(Node root,int data)
+    {
+        if(root==null)
+        {
+            root=new Node(data);
+            return root;
+        }
+        else if(root.data<data)
+        {
+            root.right=addNode(root.right,data);
+        }
+        else{
+            root.left=addNode(root.left,data);
+        }
+        return root;
+    }
+     
+      public static void traverse(Node root)
+    {
+                while(root!=null)
+               {
+            
+                System.out.print(root.data+" -> ");
+                root=root.right;
+              }
+        
+    }
+
+      public static void binaryTreeDllbfs(Node root)
+      {
+          Node p=null;
+          if(root==null)
+              return;
+          Queue<Node> q=new LinkedList<>();
+          q.add(root);
+          while(!q.isEmpty())
+          {
+              p=q.poll();
+              Node curr=new Node(p.data);
+              if(prev==null)
+              {
+                  head=curr;
+              }
+              else{
+                 curr.left=prev;
+                 prev.right=curr;
+              }
+              prev=curr;
+              if(p.left!=null)
+              {
+                  q.add(p.left);
+              }
+              if(p.right!=null)
+              {
+                  q.add(p.right);
+              }
+              //q.poll();
+          }
+      }
+
+}
