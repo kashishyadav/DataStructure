@@ -7,11 +7,11 @@ class GFG
     static HashMap<Character,Integer> hm=new HashMap<>();
     public static void valueFill( HashMap<Character,Integer> hm)
     {
-        int val=1;
+        int v=1;
         for(char ch='A';ch<='Z';ch++)
         {
-            hm.put(ch,val);
-            val++;
+            hm.put(ch,v);
+            v++;
         }
     }
 	public static void main (String[] args)throws IOException
