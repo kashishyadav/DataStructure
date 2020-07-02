@@ -1,0 +1,24 @@
+class GfG
+{
+    int maxLen(int arr[], int n)
+    {
+        int curr=0;
+        HashMap<Integer,Integer> hs=new HashMap<>();
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            hs.put(sum,i);
+            sum+=arr[i];
+            if(hs.containsKey(sum))
+            {
+                curr=Math.max(curr,i-hs.get(sum));
+            }
+            
+        }
+        
+        return curr==0?0:curr+1;
+	   
+    }
+}
+//calculate sum to zero 
+//calculate sum  to k
