@@ -3,6 +3,21 @@ import java.lang.*;
 import java.io.*;
 class GFG
  {
+	//using hashing
+  public static boolean twoSum(int []arr,int target)
+   {
+       HashSet<Integer> hs=new HashSet<>();
+       for(int i=0;i<arr.length;i++)
+       {
+           int temp=target-arr[i];
+           if(hs.contains(temp))
+           {
+               return true;
+           }
+           hs.add(arr[i]);
+       }
+       return false;
+   }
 	public static void main (String[] args)throws IOException
 	 {
 	 //code
