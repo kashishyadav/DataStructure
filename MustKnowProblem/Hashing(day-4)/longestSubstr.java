@@ -3,6 +3,28 @@ import java.lang.*;
 import java.io.*;
 class GFG
  {
+	public static int longestSubstr(String s,int n)
+	 {
+	     HashSet<Character> hs=new HashSet<>();
+	     int max=0;
+	     int i=0,j=0;
+	     while(i<n && j<n)
+	     {
+	         if(!hs.contains(s.charAt(j)))
+	         {
+	             hs.add(s.charAt(j));
+	             j++;//increament thse pointer upto when no char is repeat
+	             max=Math.max(max,j-i);
+	             
+	         }
+	         else
+	         {
+	             hs.remove(s.charAt(i));
+	             i++;//now change starting index as index j char get repated
+	         }
+	     }
+	     return max;
+	 }
 	public static void main (String[] args)throws IOException
 	 {
 	 //code
